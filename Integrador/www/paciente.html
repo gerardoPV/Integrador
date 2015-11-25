@@ -1,6 +1,20 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+<meta charset="utf-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+    <title>Integrador</title>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Integrador project references -->
+    <link href="css/index.css" rel="stylesheet" />
+
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
     <title></title>
     <script type="text/javascript">
         var Paciente = {
@@ -11,10 +25,49 @@
     </script>
 </head>
 <body>
+    <!-- Cordova reference, this is added to your app when it's built. -->
+    <script src="cordova.js"></script>
+    <script src="scripts/platformOverrides.js"></script>
+
+    <script src="scripts/index.js"></script>
+
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="scripts/materialize.min.js"></script>
     <!--
         http://www.cenetec.salud.gob.mx/descargas/gpc/CatalogoMaestro/479_GPC_SxndromeFragilidad/GER_sindrome_de_fragilidad.pdf
         Anexos 5.2 y 5.4
         -->
-    <div>Content goes here.</div>
+    <div>
+        <form class="col s12">
+            <div class="row">
+                <div class="input-field col s6">
+                    <input id="first_name" type="text" class="validate">
+                    <label for="first_name">Nombre</label>
+                </div>
+                <div class="input-field col s6">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Apellido</label>
+                </div>
+            </div>
+            <div class="row">
+                <label>Genero</label>
+                <div class="input-field col s6">
+                    <input name="gender" type="radio" id="male" />
+                    <label for="male">Masculino</label>
+                </div>
+                <div class="input-field col s6">
+                    <input name="gender" type="radio" id="female" />
+                    <label for="female">Femenino</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="email" type="email" class="validate">
+                    <label for="email">Email</label>
+                </div>
+            </div>
+        </form>
+    </div>
 </body>
 </html>
