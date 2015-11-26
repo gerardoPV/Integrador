@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+    <title>Integrador</title>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Integrador project references -->
+    <link href="css/index.css" rel="stylesheet" />
+
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="css/default.css"/>
+</head>
+<body>
+    <!-- Cordova reference, this is added to your app when it's built. -->
+    <script src="cordova.js"></script>
+    <script src="scripts/platformOverrides.js"></script>
+
+    <script src="scripts/index.js"></script>
+
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="scripts/materialize.min.js"></script>
+    <nav class="cyan lighten-2">
+        <div class="nav-wrapper">
+            <div class="brand-logo center">
+                <img class="responsive-img" src="images/logo_txt-50.png">
+            </div>
+            
+        </div>
+    </nav>
+    <div class="container">
+        <div>
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="name" name="name" type="text" class="validate cyan-text">
+                        <label class="cyan-text" for="user">Nombre</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="lastname" name="lastname" type="text" class="validate cyan-text">
+                        <label class="cyan-text" for="lastname">Apellido</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="age" name="age" type="number" class="validate cyan-text">
+                        <label class="cyan-text" for="age">Edad</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="mail" name="email" type="email" class="validate cyan-text">
+                        <label class="cyan-text" for="email">E-mail</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                         <button class="btn waves-effect waves-light cyan lighten-2" type="submit" name="action">
+                            Enviar
+                            <i class="material-icons right">send</i>
+                        </button>  
+                    </div>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+</body>
+</html>
