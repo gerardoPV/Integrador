@@ -40,15 +40,21 @@
     </nav>
 
     <div class="container">
-        <div class="col s12">
-            <div id="chart1" class="col s4"  style="height:300px;width:320px;"></div>
+        <div class="row">
+            <div id="chart1" style="height:300px;width:320px; margin:auto;"></div>
+        </div>
+    <div class="row">
+        <div class="center-align">
+            <button class="btn waves-effect waves-light cyan lighten-2">
+                Contestar Questionario
+            </button>
         </div>
     </div>
 
     
     <script type="text/javascript">
         $(document).ready(function(){
-            $.jqplot('chart1',  [[[1, 1],[2,2],[3,3],[4,4],[5,5]]]);
+            $.jqplot('chart1',  [[[1, 0],[2,3],[3,1],[4,3],[5,4],[6,5]]]);
         });
     </script>
 </body>
