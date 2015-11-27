@@ -1,4 +1,4 @@
-var HomeView = function (service) {
+﻿var QuizView = function () {
 
     this.initialize = function () {
         this.$el = $('<div/>');

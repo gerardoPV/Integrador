@@ -1,4 +1,4 @@
-var HomeView = function (service) {
+﻿var LoginView = function () {
 
     this.initialize = function () {
         this.$el = $('<div/>');

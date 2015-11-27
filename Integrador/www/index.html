@@ -11,103 +11,238 @@
     <!--Materalize CSS Imports-->
     <link type="text/css" rel="stylesheet" href="css/material-icons.css" />
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="css/jquery.jqplot.min.css" />
 </head>
 <body>
-
-<script id="home-tpl" type="text/template">
-    <header class="bar bar-nav">
-        <h1 class="title">Directory</h1>
-    </header>
-    <div class="bar bar-standard bar-header-secondary">
-        <input class='search-key' type="search"/>
+    <div class="container" id="maindiv">
+        <!--Views will be attached here-->
     </div>
-    <div class="content"></div>
-</script>
 
-<script id="employee-list-tpl" type="text/template">
-    <ul class="table-view">
-        {{#each this}}
-        <li class="table-view-cell media">
-            <a href="#employees/{{ id }}">
-                <img class="media-object pull-left" src="assets/pics/{{pic}}">
-                <div class="media-body">
-                    {{firstName}} {{lastName}}
-                    <p>{{title}}</p>
-                </div>
-            </a>
-        </li>
-        {{/each}}
-    </ul>
-</script>
-
-<script id="employee-tpl" type="text/template">
-    <header class="bar bar-nav">
-        <a class="btn btn-link btn-nav pull-left" href="#">
-            <span class="icon icon-left-nav"></span>
-        </a>
-        <h1 class="title">Employee</h1>
-    </header>
-    <div class="content">
-        <div class="card">
-            <ul class="table-view">
-                <li class="table-view-cell media">
-                    <img class="media-object pull-left" src="assets/pics/{{pic}}">
-                    <div class="media-body">
-                        {{ firstName }} {{ lastName }}
-                        <p>{{ title }}</p>
-                    </div>
-                </li>
-                <li class="table-view-cell media">
-                    <a href="tel:{{ officePhone }}" class="push-right">
-                        <span class="media-object pull-left icon icon-call"></span>
-                        <div class="media-body">
-                            Call Office
-                            <p>{{ officePhone }}</p>
-                        </div>
-                    </a>
-                </li>
-                <li class="table-view-cell media">
-                    <a href="tel:{{ cellPhone }}" class="push-right">
-                        <span class="media-object pull-left icon icon-call"></span>
-                        <div class="media-body">
-                            Call Cell
-                            <p>{{ cellPhone }}</p>
-                        </div>
-                    </a>
-                </li>
-                <li class="table-view-cell media">
-                    <a href="sms:{{ cellPhone }}" class="push-right">
-                        <span class="media-object pull-left icon icon-sms"></span>
-                        <div class="media-body">
-                            SMS
-                            <p>{{ cellPhone }}</p>
-                        </div>
-                    </a>
-                </li>
-                <li class="table-view-cell media">
-                    <a href="mailto:{{ email }}" class="push-right">
-                        <span class="media-object pull-left icon icon-mail"></span>
-                        <div class="media-body">
-                            Email
-                            <p>{{ email }}</p>
-                        </div>
-                    </a>
-                </li>
-
-            </ul>
+    <!--Views and templates go here-->
+    <script type="text/x-handlebars-template" id="login-tpl">
+        <div class="row">
+            <div class="col s4 offset-s4">
+                <img class="responsive-img" src="img/logo_completo.jpg">
+            </div>
         </div>
-    </div>
-</script>
+        <div class="row">
+            <div class="input-field col s6">
+                <input id="user" type="text" class="validate cyan-text">
+                <label for="user" class="cyan-text">Usuario</label>
+            </div>
+            <div class="input-field col s6">
+                <input id="pass" type="password" class="validate cyan-text">
+                <label for="pass" class="cyan-text">Contraseña</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <a class="waves-effect waves-light cyan lighten-2 btn" href="#home">Enviar</a>
+                <a class="waves-effect waves-light cyan btn" href="#register">Registro</a>
+            </div>
+        </div>
+    </script>
 
-<script src="cordova.js"></script>
-<script src="js/lib/handlebars.js"></script>
-<script src="js/lib/jquery.js"></script>
-<script src="js/lib/router.js"></script>
-<script src="js/ws/dummy/EmployeeService.js"></script>
-<script src="js/EmployeeListView.js"></script>
-<script src="js/HomeView.js"></script>
-<script src="js/EmployeeView.js"></script>
-<script src="js/app.js"></script>
+    <script type="text/x-handlebars-template" id="register-tpl">
+        <nav class="cyan lighten-2">
+            <div class="nav-wrapper">
+                <div class="brand-logo center">
+                    <img class="responsive-img" src="img/logo_txt-50.png">
+                </div>
 
+            </div>
+        </nav>
+        <div class="col s12">
+            <div class="row">
+                <div class="input-field col s6">
+                    <input id="name" name="name" type="text" class="validate cyan-text">
+                    <label class="cyan-text" for="user">Nombre</label>
+                </div>
+                <div class="input-field col s6">
+                    <input id="lastname" name="lastname" type="text" class="validate cyan-text">
+                    <label class="cyan-text" for="lastname">Apellido</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="age" name="age" type="number" class="validate cyan-text">
+                    <label class="cyan-text" for="age">Edad</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="mail" name="email" type="email" class="validate cyan-text">
+                    <label class="cyan-text" for="email">E-mail</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <a class="btn waves-effect waves-light cyan lighten-2" href="#home">Enviar</a>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/x-handlebars-template" id="home-tpl">
+        <nav class="cyan lighten-2">
+            <div class="nav-wrapper">
+                <div class="brand-logo center">
+                    <img class="responsive-img" src="img/logo_txt-50.png">
+                </div>
+            </div>
+        </nav>
+        <div class="row">
+            <div id="chart" style="height:300px;width:320px; margin:auto;"></div>
+        </div>
+        <div class="row">
+            <div class="center-align">
+                <a class="btn waves-effect waves-light cyan lighten-2" href="#quiz">Contestar Cuestionario</a>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/x-handlebars-template" id="quiz-tpl">
+        <nav class="cyan lighten-2">
+            <div class="nav-wrapper">
+                <div class="brand-logo center">
+                    <img class="responsive-img" src="img/logo_txt-50.png">
+                </div>
+            </div>
+        </nav>
+
+        <div class="row">
+            <div class="input-field col s7">
+                <div class="cyan-text">
+                    ¿Haz perdidio al menos 5 kg durante el precedente año?
+                </div>
+            </div>
+            <div class="input-field col s2">
+                <input id="peso_si" name="peso" type="radio" class="validate cyan-text">
+                <label class="cyan-text" for="peso_si">Sí</label>
+            </div>
+            <div class="input-field col s2">
+                <input id="peso_no" name="peso" type="radio" class="validate cyan-text">
+                <label class="cyan-text" for="peso_no">No</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s7">
+                <div class="cyan-text">
+                    ¿Se cansa facilmente?
+                </div>
+            </div>
+            <div class="input-field col s2">
+                <input id="cansa_si" name="cansa" type="radio" class="validate cyan-text">
+                <label class="cyan-text" for="cansa_si">Sí</label>
+            </div>
+            <div class="input-field col s2">
+                <input id="cansa_no" name="cansa" type="radio" class="validate cyan-text">
+                <label class="cyan-text" for="cansa_no">No</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s7">
+                <div class="cyan-text">
+                    ¿Se ha sentido o siente más débil?
+                </div>
+            </div>
+            <div class="input-field col s2">
+                <input id="debil_si" name="debil" type="radio" class="validate cyan-text">
+                <label class="cyan-text" for="debil_si">Sí</label>
+            </div>
+            <div class="input-field col s2">
+                <input id="debil_no" name="debil" type="radio" class="validate cyan-text">
+                <label class="cyan-text" for="debil_no">No</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s7">
+                <div class="cyan-text">
+                    ¿Su actividad física se ha reducído?
+                </div>
+            </div>
+            <div class="input-field col s2">
+                <input id="fisica_si" name="fisica" type="radio" class="validate cyan-text">
+                <label class="cyan-text" for="fisica_si">Sí</label>
+            </div>
+            <div class="input-field col s2">
+                <input id="fisica_no" name="fisica" type="radio" class="validate cyan-text">
+                <label class="cyan-text" for="fisica_no">No</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s7">
+                <div class="cyan-text">
+                    ¿Camina con lentitud?
+                </div>
+            </div>
+            <div class="input-field col s2">
+                <input id="lento_si" name="lento" type="radio" class="validate cyan-text">
+                <label class="cyan-text" for="lento_si">Sí</label>
+            </div>
+            <div class="input-field col s2">
+                <input id="lento_no" name="lento" type="radio" class="validate cyan-text">
+                <label class="cyan-text" for="lento_no">No</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <a class="btn waves-effect waves-light cyan lighten-2" href="#home">Enviar</a>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/x-handlebars-template" id="patient-tpl">
+        <nav class="cyan lighten-2">
+            <div class="nav-wrapper">
+                <div class="brand-logo center">
+                    <img class="responsive-img" src="img/logo_txt-50.png">
+                </div>
+            </div>
+        </nav>
+        <div class="col s12">
+            <div class="row">
+                <div class="input-field col s6">
+                    <input id="first_name" type="text" class="validate">
+                    <label for="first_name">Nombre</label>
+                </div>
+                <div class="input-field col s6">
+                    <input id="last_name" type="text" class="validate">
+                    <label for="last_name">Apellido</label>
+                </div>
+            </div>
+            <div class="row">
+                <label>Genero</label>
+                <div class="input-field col s6">
+                    <input name="gender" type="radio" id="male" />
+                    <label for="male">Masculino</label>
+                </div>
+                <div class="input-field col s6">
+                    <input name="gender" type="radio" id="female" />
+                    <label for="female">Femenino</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="email" type="email" class="validate">
+                    <label for="email">Email</label>
+                </div>
+            </div>
+
+            <div class="input-field col s12">
+                <a class="btn waves-effect waves-light cyan lighten-2" href="#home">Enviar</a>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/lib/handlebars.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.js"></script>
+    <script type="text/javascript" src="js/lib/router.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.browser.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.jqplot.js"></script>
+    <script type="text/javascript" src="js/lib/materialize.min.js"></script>
+    <script type="text/javascript" src="js/Controllers.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
 </body>
 </html>

@@ -1,46 +1,35 @@
-// We use an "Immediate Function" to initialize the application to avoid leaving anything behind in the global scope
+// Immediate Function to avoid leaving anything behind in the global scope
 (function () {
 
-    /* ---------------------------------- Local Variables ---------------------------------- */
-    HomeView.prototype.template = Handlebars.compile($("#home-tpl").html());
-    EmployeeListView.prototype.template = Handlebars.compile($("#employee-list-tpl").html());
-    EmployeeView.prototype.template = Handlebars.compile($("#employee-tpl").html());
-
-    var service = new EmployeeService();
-    service.initialize().done(function () {
-        router.addRoute('', function() {
-            console.log('empty');
-            $('body').html(new HomeView(service).render().$el);
-        });
-
-        router.addRoute('employees/:id', function(id) {
-            console.log('details');
-            service.findById(parseInt(id)).done(function(employee) {
-                $('body').html(new EmployeeView(employee).render().$el);
-            });
-        });
-
-        router.start();
+    LoginView.prototype.template = Handlebars.compile($("#login-tpl").html());
+    router.addRoute('', function () {
+        $('#maindiv').html(new LoginView().render());
     });
 
-    /* --------------------------------- Event Registration -------------------------------- */
+    RegisterView.prototype.template = Handlebars.compile($("#register-tpl").html());
+    router.addRoute('register', function () {
+        $('#maindiv').html(new RegisterView().render());
+    });
+
+    HomeView.prototype.template = Handlebars.compile($("#home-tpl").html());
+    router.addRoute('home', function () {
+        $('#maindiv').html(new HomeView().render());
+        $.jqplot('chart', [[[1, 0], [2, 3], [3, 1], [4, 3], [5, 4], [6, 5]]]);
+    });
+
+    QuizView.prototype.template = Handlebars.compile($("#quiz-tpl").html());
+    router.addRoute('quiz', function () {
+        $('#maindiv').html(new QuizView().render());
+    });
+
+    PatientView.prototype.template = Handlebars.compile($("#patient-tpl").html());
+    router.addRoute('patient', function (patient) { // TODO ruta por id
+        $('#maindiv').html(new PatientView(patient).render());
+    });
+
+    router.start();
+
     document.addEventListener('deviceready', function () {
-        StatusBar.overlaysWebView( false );
-        StatusBar.backgroundColorByHexString('#ffffff');
-        StatusBar.styleDefault();
-        FastClick.attach(document.body);
-        if (navigator.notification) { // Override default HTML alert with native dialog
-            window.alert = function (message) {
-                navigator.notification.alert(
-                    message,    // message
-                    null,       // callback
-                    "Workshop", // title
-                    'OK'        // buttonName
-                );
-            };
-        }
+        console.log('device is ready');
     }, false);
-
-    /* ---------------------------------- Local Functions ---------------------------------- */
-
 }());
